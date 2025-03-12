@@ -71,7 +71,7 @@ export default function Login() {
 
                     <Button color="blue" type="submit">Sign in</Button>
                     <Link href="/register" className="w-full">
-                    <Button color="blue" type="submit">Register</Button>
+                    <Button className="w-full" color="blue" type="submit">Register</Button>
                     </Link>
                     
 
