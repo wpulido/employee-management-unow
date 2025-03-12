@@ -14,7 +14,6 @@ export const getEmployees = async (req: Request, res: Response) => {
 
 export const createEmployee = async (req: Request, res: Response) => {
   try {
-    // Validar los campos obligatorios
     const requiredFields = ["name", "lastName", "position", "birthDate"];
     for (const field of requiredFields) {
       if (!req.body[field]) {

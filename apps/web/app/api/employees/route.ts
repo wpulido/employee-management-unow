@@ -28,16 +28,12 @@ export async function POST(req: Request) {
     const body = await req.json();
     const token = req.headers.get("Authorization");
 
-    // if (!token) {
-    //   return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
-    // }
-
     const response = await fetch(`${BACKEND_URL}/employees/create`, {
       method: "POST",
       // @ts-ignore
       headers: {
         "Content-Type": "application/json",
-        Authorization: token, // Pasar el token al backend
+        Authorization: token,
       },
       body: JSON.stringify(body),
     });

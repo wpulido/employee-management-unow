@@ -71,7 +71,6 @@ const Dashboard = () => {
         return;
       }
 
-      // Format the data before sending
       const formattedData = {
         ...formData,
         birthDate: new Date(formData.birthDate).toISOString(),

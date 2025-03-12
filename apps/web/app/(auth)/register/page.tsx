@@ -2,7 +2,7 @@
 import {useState, FormEvent} from "react";
 import {useRouter} from 'next/navigation';
 import {useAuth} from "../../../context/AuthContext";
-import { Button, TextInput, Alert, Label, Checkbox, Card } from 'flowbite-react';
+import { Button, TextInput, Alert, Label, Card } from 'flowbite-react';
 import axios from "axios";
 
 export default function Page() {

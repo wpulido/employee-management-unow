@@ -24,8 +24,8 @@ Este es un sistema de gestión de empleados desarrollado con **Next.js 15**, **R
 ## 🚀 Instalación y Configuración
 ### 1️⃣ Clonar el repositorio
 ```bash
-git clone https://github.com/usuario/employee-management-system.git
-cd employee-management-system
+git clone https://github.com/usuario/employee-management-unow.git
+cd employee-management-unow
 ```
 ### 2️⃣ Instalar dependencias
 ```bash
@@ -61,7 +61,7 @@ Esto iniciará tanto el frontend como el backend con Turborepo.
 | Método | Endpoint            | Descripción |
 |--------|---------------------|-------------|
 | GET    | `/`                 | Obtiene todos los empleados. |
-| POST   | `/`                 | Crea un nuevo empleado. |
+| POST   | `/create`                 | Crea un nuevo empleado. |
 | PUT    | `/:id`              | Actualiza un empleado por su ID. |
 | DELETE | `/:id`              | Elimina un empleado por su ID. |
 
@@ -81,7 +81,7 @@ Esto iniciará tanto el frontend como el backend con Turborepo.
 ## 📌 Notas Importantes
 - Se requiere MongoDB para almacenar los datos de empleados y usuarios.
 - El backend debe estar corriendo para que el frontend funcione correctamente.
-- Las API routes en Next.js (`/api/*`) actúan como un proxy hacia el backend.
+- Las API routes en Next.js (`/api/*`) actúan como un proxy hacia el backend, a excepción del endpoint de positions, el cual consume directamente desde un servicio externo.
 
 ## 📜 Licencia
 Este proyecto está bajo la licencia **MIT**.

@@ -2,6 +2,7 @@
 import { useState, FormEvent } from "react";
 import { useAuth } from "../../../context/AuthContext";
 import { Button, TextInput, Alert, Label, Card } from 'flowbite-react';
+import Link from "next/link";
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -69,6 +70,10 @@ export default function Login() {
                     </div>
 
                     <Button color="blue" type="submit">Sign in</Button>
+                    <Link href="/register" className="w-full">
+                    <Button color="blue" type="submit">Register</Button>
+                    </Link>
+                    
 
                     {error && <Alert color="failure">{error}</Alert>}
                 </form>

@@ -1,7 +1,6 @@
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 
-// Extender la interfaz Request de Express para incluir la propiedad user
 interface AuthRequest extends Request {
     user?: string | JwtPayload;
 }

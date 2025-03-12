@@ -12,8 +12,6 @@ async function runMigrations() {
     await User.updateMany({}, { $unset: { name: '' } });
 
 
-    // await User.updateMany({}, { $set: { role: 'user' } });
-
     ('Migrations completed');
     await mongoose.disconnect();
 }

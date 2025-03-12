@@ -53,7 +53,6 @@ export const login = async (req: Request, res: Response) => {
             maxAge: 3600000,
         });
 
-        // 🔥 Aquí enviamos también el token en el JSON para que el frontend pueda guardarlo
         res.status(200).json({ message: 'Login successful', token });
 
     } catch (error) {
