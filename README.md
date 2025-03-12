@@ -1,84 +1,90 @@
-# Turborepo starter
+# Employee Management System
 
-This Turborepo starter is maintained by the Turborepo core team.
+Este es un sistema de gestión de empleados desarrollado con **Next.js 15**, **React**, **TypeScript**, **Node.js**, **Express**, **MongoDB** y **Turborepo**.
 
-## Using this example
+## 📌 Tecnologías Utilizadas
+- **Frontend**: Next.js 15, React, TypeScript, Flowbite-React
+- **Backend**: Node.js, Express, MongoDB, TypeScript
+- **Autenticación**: JSON Web Tokens (JWT), Cookies HTTPOnly
+- **Monorepo**: Turborepo
 
-Run the following command:
-
-```sh
-npx create-turbo@latest
+## 📂 Estructura del Proyecto
+```
+/employee-management-system
+│── apps
+│   ├── client (Frontend - Next.js 15)
+│   ├── server (Backend - Express.js)
+│── packages
+│   ├── config (Configuraciones compartidas)
+│── .env
+│── package.json
+│── turbo.json
 ```
 
-## What's inside?
-
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
+## 🚀 Instalación y Configuración
+### 1️⃣ Clonar el repositorio
+```bash
+git clone https://github.com/usuario/employee-management-system.git
+cd employee-management-system
 ```
-cd my-turborepo
-pnpm build
+### 2️⃣ Instalar dependencias
+```bash
+npm install
 ```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
+### 3️⃣ Configurar variables de entorno (`.env` en el directorio raíz) - SE PONEN LOS VALORES POR PROPÓSITOS DE LA PRUEBA ÚNICAMENTE.
+```env
+MONGO_URI=mongodb+srv://wistrepdev:b8La7edujPIp5Ow8@employees.fsijg.mongodb.net/?retryWrites=true&w=majority&appName=employees
+JWT_SECRET=JWT_SECRET
+NODE_ENV=development
+API_BASE_URL=http://localhost:5001
 ```
-cd my-turborepo
-pnpm dev
+### 4️⃣ Generar JWT SECRET
+```bash
+ts-node ./generateJwtSecret.ts
 ```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
+### 5️⃣ Iniciar el proyecto
+```bash
+npm run dev
 ```
-cd my-turborepo
-npx turbo login
-```
+Esto iniciará tanto el frontend como el backend con Turborepo.
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+## 🔥 API Routes
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+### 🔐 **Autenticación** (`/api/auth`)
+| Método | Endpoint     | Descripción |
+|--------|-------------|-------------|
+| POST   | `/login`    | Inicia sesión y genera un token de acceso. |
+| POST   | `/register` | Registra un nuevo usuario. |
+| GET    | `/logout`   | Cierra la sesión y elimina la cookie. |
 
-```
-npx turbo link
-```
+### 👥 **Empleados** (`/api/employees`)
+| Método | Endpoint            | Descripción |
+|--------|---------------------|-------------|
+| GET    | `/`                 | Obtiene todos los empleados. |
+| POST   | `/`                 | Crea un nuevo empleado. |
+| PUT    | `/:id`              | Actualiza un empleado por su ID. |
+| DELETE | `/:id`              | Elimina un empleado por su ID. |
 
-## Useful Links
+### 🏢 **Posiciones** (`/api/positions`)
+| Método | Endpoint   | Descripción |
+|--------|-----------|-------------|
+| GET    | `/`       | Obtiene la lista de posiciones disponibles. |
 
-Learn more about the power of Turborepo:
+## 🛠️ Funcionalidades
+✅ Autenticación de usuarios con JWT y cookies seguras.
+✅ CRUD de empleados.
+✅ Búsqueda y filtrado de empleados.
+✅ Gestión de posiciones.
+✅ Diseño responsivo con Flowbite-React.
+✅ Monorepo con Turborepo para mejor administración del código.
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+## 📌 Notas Importantes
+- Se requiere MongoDB para almacenar los datos de empleados y usuarios.
+- El backend debe estar corriendo para que el frontend funcione correctamente.
+- Las API routes en Next.js (`/api/*`) actúan como un proxy hacia el backend.
+
+## 📜 Licencia
+Este proyecto está bajo la licencia **MIT**.
+
+---
+Desarrollado por Wistremiro Pulido 🚀
