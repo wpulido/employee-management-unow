@@ -2,10 +2,12 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button, Modal, TextInput, Alert } from "flowbite-react";
 import { Employee } from "server/types";
+import {useRouter} from "next/navigation";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api";
 
 const Dashboard = () => {
+  const router = useRouter();
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [filteredEmployees, setFilteredEmployees] = useState<Employee[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -162,21 +164,21 @@ const Dashboard = () => {
         <h2 className={"text-black font-bold text-3xl"}>Employee management</h2>
         <div className="flex justify-between gap-4">
           <Button color={"blue"} className={"text-white"} onClick={() => setShowCreateModal(true)}>
-            Crear Empleado
+            Create employee
           </Button>
 
-          <Button className={"text-white"} color={"dark"} onClick={logOut}>Cerrar Sesión</Button>
+          <Button className={"text-white"} color={"dark"} onClick={logOut}>Logout</Button>
         </div>
       </div>
 
       {filteredEmployees.length > 0 ? (
         <Table className="mt-10" >
           <Table.Head>
-            <Table.HeadCell>Nombre</Table.HeadCell>
-            <Table.HeadCell>Apellido</Table.HeadCell>
-            <Table.HeadCell>Puesto</Table.HeadCell>
-            <Table.HeadCell>Fecha de Nacimiento</Table.HeadCell>
-            <Table.HeadCell>Acciones</Table.HeadCell>
+            <Table.HeadCell>Name</Table.HeadCell>
+            <Table.HeadCell>Last name</Table.HeadCell>
+            <Table.HeadCell>Position</Table.HeadCell>
+            <Table.HeadCell>Birth date</Table.HeadCell>
+            <Table.HeadCell>Actions</Table.HeadCell>
           </Table.Head>
           <Table.Body>
             {filteredEmployees?.map((employee) => (
@@ -194,7 +196,7 @@ const Dashboard = () => {
                       setShowUpdateModal(true);
                     }}
                   >
-                    Actualizar
+                    Update
                   </Button>
                   <Button
                     color="red"
@@ -204,7 +206,7 @@ const Dashboard = () => {
                     }}
                     className="ml-2"
                   >
-                    Eliminar
+                    Delete
                   </Button>
                 </Table.Cell>
               </Table.Row>
@@ -212,18 +214,18 @@ const Dashboard = () => {
           </Table.Body>
         </Table>
       ) : (
-        <Alert color="info">No hay empleados registrados.</Alert>
+        <Alert color="info" className={"text-black"}>No employees registered.</Alert>
       )}
 
       <Modal show={showCreateModal} onClose={() => setShowCreateModal(false)}>
-        <Modal.Header>Crear Empleado</Modal.Header>
+        <Modal.Header>Create employee</Modal.Header>
         <Modal.Body>
           <div className="space-y-4">
-            <TextInput name="name" placeholder="Nombre" value={formData.name} onChange={handleInputChange} />
-            <TextInput name="lastName" placeholder="Apellido" value={formData.lastName} onChange={handleInputChange} />
+            <TextInput name="name" placeholder="Name" value={formData.name} onChange={handleInputChange} />
+            <TextInput name="lastName" placeholder="Last name" value={formData.lastName} onChange={handleInputChange} />
             <select name="position" value={formData.position} onChange={handleInputChange} className="w-full p-2 border rounded text-black">
               <option className={"text-black"} value="">
-                Selecciona el puesto
+                Select position
               </option>
               {positions.map((position) => (
                 <option className={"text-black"} key={position} value={position}>
@@ -236,24 +238,24 @@ const Dashboard = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button className={"text-white"} color={"blue"} onClick={handleCreateEmployee}>
-            Guardar
+            Create
           </Button>
           <Button color="gray" onClick={() => setShowCreateModal(false)}>
-            Cancelar
+            Cancel
           </Button>
         </Modal.Footer>
       </Modal>
 
       <Modal show={showUpdateModal} onClose={() => setShowUpdateModal(false)}>
-        <Modal.Header>Actualizar Empleado</Modal.Header>
+        <Modal.Header>Update employee</Modal.Header>
         <Modal.Body>
           <div className="space-y-4">
-            <TextInput name="name" placeholder="Nombre" value={formData.name} onChange={handleInputChange} />
-            <TextInput name="lastName" placeholder="Apellido" value={formData.lastName} onChange={handleInputChange} />
-            <select name="position" value={formData.position} onChange={handleInputChange} className="w-full p-2 border rounded">
-              <option value="">Selecciona el puesto</option>
+            <TextInput name="name" placeholder="Name" value={formData.name} onChange={handleInputChange} />
+            <TextInput name="lastName" placeholder="Last name" value={formData.lastName} onChange={handleInputChange} />
+            <select name="position" value={formData.position} onChange={handleInputChange} className="w-full p-2 border rounded text-black">
+              <option className={"text-black"} value="">Select position</option>
               {positions.map((position) => (
-                <option key={position} value={position}>
+                <option className={"text-black"} key={position} value={position}>
                   {position}
                 </option>
               ))}
@@ -263,25 +265,25 @@ const Dashboard = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button color={"blue"} className={"text-black"} onClick={handleUpdateEmployee}>
-            Actualizar
+            Update
           </Button>
           <Button color="gray" onClick={() => setShowUpdateModal(false)}>
-            Cancelar
+            Cancel
           </Button>
         </Modal.Footer>
       </Modal>
 
       <Modal show={showDeleteModal} onClose={() => setShowDeleteModal(false)}>
-        <Modal.Header>Eliminar Empleado</Modal.Header>
+        <Modal.Header>Delete employee</Modal.Header>
         <Modal.Body>
-          <p>¿Estás seguro de que deseas eliminar a {selectedEmployee?.name}?</p>
+          <p className={"text-black"}>Are you sure you want to delete {selectedEmployee?.name}?</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button className={"text-white"} color="red" onClick={handleDeleteEmployee}>
-            Eliminar
+          <Button className={"text-white"} color="failure" onClick={handleDeleteEmployee}>
+            Delete
           </Button>
-          <Button className={"text-white"} color="gray" onClick={() => setShowDeleteModal(false)}>
-            Cancelar
+          <Button className={"text-white"} color="dark" onClick={() => setShowDeleteModal(false)}>
+            Cancel
           </Button>
         </Modal.Footer>
       </Modal>
